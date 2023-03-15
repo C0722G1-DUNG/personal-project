@@ -1,0 +1,28 @@
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+.login-block{
+    background: rgba(222, 127, 98, 0.55);  /* fallback for old browsers */
+    /*background: -webkit-linear-gradient(to bottom, rgba(233, 245, 220, 0.52), #a9a9a9);  !* Chrome 10-25, Safari 5.1-6 *!*/
+    /*background: linear-gradient(to bottom, rgba(119, 255, 0, 0.18), #ff6666); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+    /*background-color: #ff665c;*/
+    /*background:url("//theme.hstatic.net/200000184395/1000811610/14/breadcrumb_bg1.png?v=2048");*/
+    float:left;
+    width:100%;
+    padding : 50px 0;
+}
+.banner-sec{background:url("//theme.hstatic.net/200000184395/1000811610/14/breadcrumb_bg1.png?v=2048") no-repeat  left bottom;object-fit: cover;background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
+.container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
+.carousel-inner{border-radius:0 10px 10px 0;}
+.carousel-caption{text-align:left; left:5%;}
+.login-sec{padding: 50px 30px; position:relative;}
+.login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
+.login-sec .copy-text i{color:#FFCC00;}
+.login-sec .copy-text a{color:black;}
+.login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color:black;}
+.login-sec h2:after{content:" "; width:100px; height:5px; background:#FFCC00; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
+.btn-login{background: rgba(30, 131, 255, 0.21); color:black; font-weight:600;}
+.btn-login:hover{color:white;}
+.banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;}
+.banner-text h2{color:#fff; font-weight:600;}
+.banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
+.banner-text p{color:#fff;}
+/*-----*/
