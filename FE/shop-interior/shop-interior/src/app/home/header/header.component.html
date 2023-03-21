@@ -6,9 +6,10 @@
       <ul>
         <li style="margin-right: 100px">
         </li>
-        <li class="animationTop delay-03"><a routerLink="">Trang chủ</a></li>
+        <li class="animationTop delay-03"><a routerLink="/home">Trang chủ</a></li>
         <li class="animationTop delay-05"><a routerLink="/cart">Giỏ hàng</a></li>
         <li class="animationTop delay-03"><a routerLink="/login">Đăng nhập</a></li>
+        <li (click)="logout()" class="animationTop delay-03"><a routerLink="/login">Đăng xuất</a></li>
         <li>
           <div class="btn-group dropdown animationTop delay-12">
             <a class=" dropdown-toggle" type="button" data-bs-toggle="dropdown"
