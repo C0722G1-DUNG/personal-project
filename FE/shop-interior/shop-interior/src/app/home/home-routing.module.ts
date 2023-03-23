@@ -7,7 +7,7 @@ import {BodyComponent} from "./body/body.component";
 const routes: Routes = [
   {path: "" ,component:BodyComponent},
   {path: "home" ,component:BodyComponent},
-  {path: "detail" ,component:DetailComponent},
+  {path: "detail/:id" ,component:DetailComponent},
   {path: "cart" ,component:CartComponent}
 ];
 

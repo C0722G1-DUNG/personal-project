@@ -1,3 +1,4 @@
+
 <div style="margin-bottom: 50px;margin-top: 100px" class="container">
   <div class="card">
     <div class="container-fliud">
@@ -6,27 +7,23 @@
 
           <div class="preview-pic tab-content">
             <div class="tab-pane active" id="pic-1">
-              <img
-                src="https://noithatdangkhoa.com/wp-content/uploads/2022/05/san-xuat-ghe-sofa-1.jpg"/>
+              <img style="width: 100%;height: 100%"
+                [src]="urlShow">
             </div>
           </div>
-          <h4>Sản phẩm liên quan</h4>
+          <h4>Hình ảnh liên quan</h4>
           <ul class="preview-thumbnail nav nav-tabs">
-            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
-              src="http://placekitten.com/200/126"/></a></li>
-            <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126"/></a>
+            <li><a data-target="#pic-2" data-toggle="tab">
+              <img style="width: 100%;height: 100%" (click)="changeImgTwo(product.imageTwo)" [src]="product.imageTwo"/></a>
             </li>
-            <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126"/></a>
-            </li>
-            <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126"/></a>
-            </li>
-            <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126"/></a>
+            <li><a data-target="#pic-3" data-toggle="tab">
+              <img style="width: 100%;height: 100%" (click)="changeImgThree(product.imageThree)" [src]="product.imageThree"/></a>
             </li>
           </ul>
 
         </div>
         <div class="details col-md-6">
-          <h3 class="product-title">SOFA GÓC - Corner sofa</h3>
+          <h3 class="product-title">{{product.nameProduct}}</h3>
           <div class="rating">
             <div class="stars">
               <span class="fa fa-star checked"></span>
@@ -38,11 +35,10 @@
             <span class="review-no">41 đánh giá</span>
           </div>
           <b>Mô tả: </b>
-          <p class="product-description">- Sofa giường, 200 x 90 x 85 cm.</p>
-          <b>Hướng dẫn bảo quản: </b>
-          <p>- Không dùng hóa chất tẩy.</p>
-          <p>- Ủi ở nhiệt độ thích hợp, hạn chế dùng máy sấy.</p>
-          <h4 class="price">Giá: <span style="margin-left: 10px">20.000.000₫</span></h4>
+          <p class="product-description">{{product.description}}</p>
+          <b>Vật liệu: </b>
+          <p>- {{product.nameCategory}}.</p>
+          <h4 class="price">Giá: <span style="margin-left: 10px">{{product.price |number}}₫</span></h4>
           <p class="vote"><strong>91%</strong> người mua thích sản phẩm này! <strong>(87 phiếu)</strong></p>
           <h5 class="colors" style="display: inline">Trạng thái:
             <del style="color: silver;margin-left: 10px">Còn hàng</del>
@@ -52,9 +48,11 @@
           <h5 class="colors">
             <button style="width: 100%;" class="add-to-cart btn btn-default" type="button">Thêm vào giỏ hàng</button>
           </h5>
+          <div style="margin-top: 50px">
           <h5 class="fw-bold mb-5" style="position: absolute; bottom: 0;">
-            <a href="#!"><i class="fas fa-angle-left me-2"></i>Quay lại trang chính</a>
+            <a routerLink="/home"><i class="fas fa-angle-left me-2"></i>Quay lại trang chính</a>
           </h5>
+          </div>
         </div>
       </div>
     </div>

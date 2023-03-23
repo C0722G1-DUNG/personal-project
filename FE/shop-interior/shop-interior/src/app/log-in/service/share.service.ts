@@ -8,6 +8,7 @@ export class ShareService {
 
   constructor() { }
   private subject = new Subject<any>();
+  private isLogged = new Subject<boolean>();
 
   sendClickEvent() {
     this.subject.next();
@@ -15,5 +16,8 @@ export class ShareService {
 
   getClickEvent(): Observable<any> {
     return this.subject.asObservable();
+  }
+  getIsLogged(): Observable<boolean> {
+    return this.isLogged.asObservable();
   }
 }
