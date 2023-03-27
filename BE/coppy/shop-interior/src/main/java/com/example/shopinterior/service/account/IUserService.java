@@ -82,5 +82,11 @@ public interface IUserService {
      * @param:none
      **/
     List<User> findAllAdmin();
-
+    /**
+     * Created by: DungND
+     * Date created: 26/3/2023
+     * Function: findByID
+     * @param:id
+     **/
+    Optional<User> findByIdAccount(Integer idAccount);
 }

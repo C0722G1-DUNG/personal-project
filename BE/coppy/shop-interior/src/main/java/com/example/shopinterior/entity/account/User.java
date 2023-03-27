@@ -1,5 +1,6 @@
 package com.example.shopinterior.entity.account;
 
+import com.example.shopinterior.entity.cart.Cart;
 import com.example.shopinterior.entity.oder.Oder;
 
 import javax.persistence.*;
@@ -50,7 +51,6 @@ public class User {
         this.password = password;
         this.email = email;
     }
-
     public Set<Oder> getOderSet() {
         return oderSet;
     }

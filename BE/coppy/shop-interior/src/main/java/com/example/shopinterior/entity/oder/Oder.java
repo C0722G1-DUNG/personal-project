@@ -17,11 +17,10 @@ import java.util.Set;
 public class Oder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idOder;
+    private Integer idOder;
     private String flagDelete;
     private String orderDate;
-    @ManyToOne
-    private Payment payment;
+    private String paymentMethod;
     @ManyToOne
     private User user;
     @OneToMany(mappedBy = "oder")

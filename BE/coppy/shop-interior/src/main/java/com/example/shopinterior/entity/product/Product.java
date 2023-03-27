@@ -1,4 +1,5 @@
 package com.example.shopinterior.entity.product;
+import com.example.shopinterior.entity.cart.Cart;
 import com.example.shopinterior.entity.oder.PurchaseHistory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,16 +17,50 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idProduct;
+    private Integer idProduct;
     private String nameProduct;
+    @Column(length = 100000000)
     private String description;
     private boolean flagDelete = false;
     private Double price;
-    private String avatar;
     @ManyToOne
     private Category category;
     @OneToMany(mappedBy = "product")
     private Set<Image> imageSet;
     @OneToMany(mappedBy = "product")
     private Set<PurchaseHistory> purchaseHistorySet;
+    @OneToMany(mappedBy = "product")
+    private Set<Cart> carts;
+
+    public int getIdProduct() {
+        return idProduct;
+    }
+
+    public String getNameProduct() {
+        return nameProduct;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isFlagDelete() {
+        return flagDelete;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public Set<Image> getImageSet() {
+        return imageSet;
+    }
+
+    public Set<PurchaseHistory> getPurchaseHistorySet() {
+        return purchaseHistorySet;
+    }
 }

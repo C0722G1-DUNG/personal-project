@@ -1,5 +1,6 @@
-package com.example.shopinterior.entity.oder;
+package com.example.shopinterior.entity.cart;
 
+import com.example.shopinterior.entity.account.User;
 import com.example.shopinterior.entity.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,14 +14,13 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PurchaseHistory {
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idPurchaseHistory;
+    private Integer idCart;
     private int quantity;
     @ManyToOne
-    private Oder oder;
+    private User user;
     @ManyToOne
     private Product product;
-
 }

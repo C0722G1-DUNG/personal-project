@@ -102,4 +102,12 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
 
     @Query(value = "select * from user join user_roles on user.id = user_roles.user_id join role r on user_roles.roles_id = r.id where r.name = 'ROLE_ADMIN'", nativeQuery = true)
     List<User> findAllAdmin();
+    /**
+     * Created by: DungND
+     * Date created: 26/3/2023
+     * Function: findByID
+     *
+     * @param:id
+     **/
+    Optional<User> findById(Integer idAccount);
 }

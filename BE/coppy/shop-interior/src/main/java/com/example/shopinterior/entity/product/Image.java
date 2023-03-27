@@ -15,12 +15,30 @@ import javax.persistence.*;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idImage;
+    private Integer idImage;
     private String imageOne;
     private String imageTwo;
     private String imageThree;
-    private String imageFour;
-    private String imageFive;
     @ManyToOne
     private Product product;
+
+    public Integer getIdImage() {
+        return idImage;
+    }
+
+    public String getImageOne() {
+        return imageOne;
+    }
+
+    public String getImageTwo() {
+        return imageTwo;
+    }
+
+    public String getImageThree() {
+        return imageThree;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
 }

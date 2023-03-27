@@ -16,7 +16,7 @@ import java.util.Set;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCategory;
+    private Integer idCategory;
     private String nameCategory;
     @OneToMany(mappedBy = "category")
     private Set<Product> productSet;

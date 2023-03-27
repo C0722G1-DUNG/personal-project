@@ -160,4 +160,9 @@ public class UserService implements IUserService {
         return iUserRepository.findAllAdmin();
     }
 
+    @Override
+    public Optional<User> findByIdAccount(Integer idAccount) {
+        return iUserRepository.findById(idAccount);
+    }
+
 }
