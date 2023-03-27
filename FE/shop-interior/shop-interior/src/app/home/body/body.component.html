@@ -25,9 +25,13 @@
                     giúp cho doanh nghiệp ngày càng phát triển hơn.</span>
     </section>
     <div class="d-flex zoom justify-content-center">
-      <input class="form-control me-2" style="width: 40%" type="search" placeholder="Search"
-             aria-label="Search">
-      <button class="btn btn-outline-warning" type="submit" style="border-radius: 50%; width: 30px"><i class="fa-brands fa-searchengin"></i></button>
+      <input class="form-control me-2" style="width: 10%" type="search" placeholder="từ"
+             aria-label="Search" [(ngModel)]="searchMinPrice" >
+      <input class="form-control me-2" style="width: 10%" type="search" placeholder="đến"
+             aria-label="Search" [(ngModel)]="searchMaxPrice">
+      <input class="form-control me-2" style="width: 20%" type="search" placeholder="tìm theo tên sản phẩm"
+             aria-label="Search" [(ngModel)]="searchNameProduct">
+      <button class="btn btn-outline-warning" type="submit" style="border-radius: 50%; width: 30px"><i class="fa-brands fa-searchengin" (click)="search()"></i></button>
     </div>
     <!--Sản phẩm hot-->
     <div class="container mt-5 mb-5">
@@ -38,13 +42,14 @@
         </p></h1>
       </div>
     </div>
-    <section class="parents">
+    <section class="parents" *ngIf="flagDisplay != false; else elseBlock">
       <div class="row row-cols-1 row-cols-md-3 g-4" >
         <div class="col" *ngFor="let iteam of productList">
           <div class="card h-100">
             <img style="width: 100%;height: 100%" [src]="iteam.imageOne" class="card-img-top" alt="immage">
             <div class="middle">
               <button [routerLink]="['/detail',iteam.idProduct]" class="text">xem chi tiết</button>
+              <button [routerLink]="['/detail',iteam.idProduct]" class="text">thêm vào giỏ hàng</button>
             </div>
             <div class="card-body">
               <h5  class="card-title">{{iteam.nameProduct | slice: 0 : 30}}</h5>
@@ -55,4 +60,19 @@
       </div>
     </section>
   </div>
+<ng-template #elseBlock>
+  <div class="row" style="height: 34.5rem; margin: 0; padding: 0">
+    <div class="d-flex align-items-center justify-content-center col-12">
+      <h2 class="text-primary">Không có sản phẩm nào</h2>
+    </div>
+  </div>
+</ng-template>
+<a style="cursor: pointer; color: #f44336; text-decoration: none" type="button" (click)="getAll(size+3)" *ngIf="!last">
+  <i class="fas fa-angle-double-down"></i><br>
+  Xem thêm...
+</a>
+<a style="cursor: pointer; color: #f44336; text-decoration: none" type="button" (click)="getAll(size=3)" *ngIf="last">
+  <i class="fas fa-angle-double-up" (click)="scrollToBlog()"></i><br>
+  Ẩn bớt
+</a>
 

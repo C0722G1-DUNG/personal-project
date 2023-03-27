@@ -49,40 +49,38 @@ export class TokenService {
     sessionStorage.removeItem(CART);
     sessionStorage.setItem(CART,JSON.stringify(cart));
   }
-  public upQuantity(id: number,carts: Cart[]) {
-    for (let i = 0; i < carts.length; i++) {
-      if (carts[i].id == id) {
-        // @ts-ignore
-        carts[i].quantity += 1;
-        break
-      }
-    }
-  }
-  public checkExist(name: string) {
-    console.log(name)
-    // let cart = this.getCart();
-    // @ts-ignore
-    for (let i = 0; i < this.getCart().length; i++) {
-      // @ts-ignore
-      if (this.getCart()[i].name == name) {
-        return true;
-      }
-    }
-    return false;
-  }
-  public getCart() {
-    const carts = sessionStorage.getItem(CART);
-    if(carts == 'undefined') {
-      return this.cart;
-    } else {
-      if (carts != null) {
-        this.cart = JSON.parse(carts);
-      }
-      return this.cart;
-    }
-
-
-  }
+  // public upQuantity(id: number,carts: Cart[]) {
+  //   for (let i = 0; i < carts.length; i++) {
+  //     if (carts[i].id == id) {
+  //       // @ts-ignore
+  //       carts[i].quantity += 1;
+  //       break
+  //     }
+  //   }
+  // }
+  // public checkExist(name: string) {
+  //   console.log(name)
+  //   // let cart = this.getCart();
+  //   // @ts-ignore
+  //   for (let i = 0; i < this.getCart().length; i++) {
+  //     // @ts-ignore
+  //     if (this.getCart()[i].name == name) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
+  // public getCart() {
+  //   const carts = sessionStorage.getItem(CART);
+  //   if(carts == 'undefined') {
+  //     return this.cart;
+  //   } else {
+  //     if (carts != null) {
+  //       this.cart = JSON.parse(carts);
+  //     }
+  //     return this.cart;
+  //   }
+  // }
   public setToken(token: string) {
     if (this.getStorage() == 'local') {
       localStorage.removeItem(TOKEN);

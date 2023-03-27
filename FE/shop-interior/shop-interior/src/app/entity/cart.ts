@@ -1,7 +1,10 @@
 export interface Cart {
-  id?: number;
-  name?: string;
-  image?: string;
-  price?: number;
+  idCart?: number;
   quantity?: number;
+  idProduct?: number;
+  nameProduct?: string;
+  description?: string;
+  price?: number;
+  imageOne?: number;
+  totalCost?: number;
 }
