@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
-    User findById(int id);
+
+    Optional<User> findById(int id);
 
     /**
      * Created by: CuongVV

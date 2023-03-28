@@ -16,8 +16,8 @@ public class UserService implements IUserService {
     @Autowired
     private IUserRepository iUserRepository;
     @Override
-    public User findById(int id) {
-        return iUserRepository.findById(id).orElse(null);
+    public Optional<User> findById(int id) {
+        return iUserRepository.findById(id);
     }
     /**
      * Created by: CuongVV

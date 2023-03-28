@@ -1,5 +1,6 @@
 package com.example.shopinterior.entity.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCategory;
     private String nameCategory;
+    @JsonBackReference
     @OneToMany(mappedBy = "category")
     private Set<Product> productSet;
 }

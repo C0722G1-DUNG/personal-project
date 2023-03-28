@@ -1,7 +1,6 @@
 package com.example.shopinterior.entity.account;
-
-import com.example.shopinterior.entity.cart.Cart;
 import com.example.shopinterior.entity.oder.Oder;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -24,6 +23,7 @@ public class User {
     private String avatar;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     private Set<Oder> oderSet;
     public User() {

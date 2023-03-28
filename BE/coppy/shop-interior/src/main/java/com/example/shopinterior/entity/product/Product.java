@@ -1,6 +1,8 @@
 package com.example.shopinterior.entity.product;
 import com.example.shopinterior.entity.cart.Cart;
 import com.example.shopinterior.entity.oder.PurchaseHistory;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,44 +25,17 @@ public class Product {
     private String description;
     private boolean flagDelete = false;
     private Double price;
+    private int quantity;
+    @JsonManagedReference
     @ManyToOne
     private Category category;
+    @JsonBackReference
     @OneToMany(mappedBy = "product")
     private Set<Image> imageSet;
+    @JsonBackReference
     @OneToMany(mappedBy = "product")
     private Set<PurchaseHistory> purchaseHistorySet;
+    @JsonBackReference
     @OneToMany(mappedBy = "product")
     private Set<Cart> carts;
-
-    public int getIdProduct() {
-        return idProduct;
-    }
-
-    public String getNameProduct() {
-        return nameProduct;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public boolean isFlagDelete() {
-        return flagDelete;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public Set<Image> getImageSet() {
-        return imageSet;
-    }
-
-    public Set<PurchaseHistory> getPurchaseHistorySet() {
-        return purchaseHistorySet;
-    }
 }

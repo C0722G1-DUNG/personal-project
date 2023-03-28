@@ -54,4 +54,5 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
                     "join category c on p.category_id_category = c.id_category where flag_delete = false  order by id_product desc",
             nativeQuery = true)
     Page<IProductDto> showList(Pageable pageable);
+
 }

@@ -10,8 +10,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDto {
+    private Integer idProduct;
     private String nameProduct;
     private String description;
     private Double price;
-    private ImageDto[] imageDto;
+
 }
