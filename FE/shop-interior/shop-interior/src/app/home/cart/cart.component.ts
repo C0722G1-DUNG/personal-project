@@ -3,6 +3,8 @@ import {Cart} from "../../entity/cart";
 import {CartService} from "./service/cart.service";
 import {TokenService} from "../../log-in/service/token.service";
 import {Title} from "@angular/platform-browser";
+import {ITotalCart} from "../../entity/itotal-cart";
+import {ShareService} from "../../log-in/service/share.service";
 
 @Component({
   selector: 'app-cart',
@@ -11,13 +13,14 @@ import {Title} from "@angular/platform-browser";
 })
 export class CartComponent implements OnInit {
   cartList: Cart[] = [];
+  totalCart:ITotalCart ={};
   checkLogin = false;
   idUser: string | null | undefined;
   mess = "";
   flagDisplay = false;
   totalCost = 0;
 
-  constructor(private cartService: CartService, private tokenService: TokenService, private title: Title) {
+  constructor(private cartService: CartService, private tokenService: TokenService, private title: Title,private a:ShareService) {
     this.title.setTitle('giỏ hàng');
   }
 
@@ -46,6 +49,25 @@ export class CartComponent implements OnInit {
   }
 
   private getCostTotal() {
-    // this.cartService.totalCost().subscribe();
+    this.cartService.totalCost(this.idUser).subscribe(data=>{
+      this.totalCart =data;
+      }
+    ,error => {},
+      ()=>{});
+  }
+  minus(idCart: number) {
+    this.cartService.minus(idCart).subscribe(data=>{
+        this.ngOnInit();
+      }
+      ,error => {},
+      ()=>{});
+  }
+
+  plus(idCart: number) {
+    this.cartService.plus(idCart).subscribe(data=>{
+      this.ngOnInit();
+      }
+      ,error => {},
+      ()=>{});
   }
 }

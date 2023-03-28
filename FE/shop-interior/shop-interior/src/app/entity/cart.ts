@@ -1,5 +1,5 @@
 export interface Cart {
-  idCart?: number;
+  idCart: number;
   quantity?: number;
   idProduct?: number;
   nameProduct?: string;
@@ -8,3 +8,4 @@ export interface Cart {
   imageOne?: number;
   totalCost?: number;
 }
+//dùng đổ list

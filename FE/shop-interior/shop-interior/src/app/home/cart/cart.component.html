@@ -19,19 +19,22 @@
                   <div class="flex-grow-1 ms-3">
                     <a href="#!" class="float-end text-black"><i class="fas fa-times"></i></a>
                     <h5 class="text-primary">{{item.nameProduct}}</h5>
-                    <h6 style="color: #9e9e9e;">Mô tả: {{item.description}}</h6>
+                    <p class="fw-bold mb-0 me-5 pe-3 text-danger">{{item.price| number}}</p>
                     <div class="d-flex align-items-center">
-                      <p class="fw-bold mb-0 me-5 pe-3">{{item.price}}</p>
-                      <div class="def-number-input number-input safari_only">
-                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                class="minus"></button>
-                        <input class="quantity fw-bold text-black" min="0" name="quantity"
-                               value="1"
-                               type="number">
-                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                class="plus"></button>
-
+                      <div class="input-group quantity mx-auto" style="width: 140px;">
+                        <div class="input-group-btn">
+                          <button class="btn btn-sm btn-primary btn-minus" (click)="minus(item.idCart)">
+                            <i class="fa fa-minus"></i>
+                          </button>
+                        </div>
+                        <span class="form-control bg-secondary border-0 text-center" id="quantity{{item.idCart}}">{{item.quantity}}</span>
+                        <div class="input-group-btn">
+                          <button class="btn btn-sm btn-primary btn-plus" (click)="plus(item.idCart)">
+                            <i class="fa fa-plus"></i>
+                          </button>
+                        </div>
                       </div>
+                      <p class="fw-bold mb-0 me-5 pe-3 text-danger">{{item.totalCost| number}}</p>
                     </div>
                   </div>
                 </div>
@@ -53,10 +56,10 @@
                     </p>
                   </div>
                   <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
-                  <div class="d-flex justify-content-between p-2 mb-2"
-                       style="background-color: #e1f5fe;">
+                  <div class="d-flex justify-content-between p-2 mb-2 "
+                       style="background-color: #e1f5fe;" >
                     <h5 class="fw-bold mb-0">Tổng:</h5>
-                    <h5 class="fw-bold mb-0">70.000.000</h5>
+                    <h5 class="fw-bold mb-0">{{totalCart.totalCostUser}}</h5>
                   </div>
 
                   <button type="button" class="btn btn-primary btn-block btn-lg">Mua ngay</button>

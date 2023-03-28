@@ -2,7 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../product/service/product.service";
 import {Product} from "../../entity/product";
 import {ViewportScroller} from "@angular/common";
+import {CartService} from "../cart/service/cart.service";
+import {ProductDto} from "../../entity/product-dto";
+import {CartDto} from "../../entity/cart-dto";
+import {TokenService} from "../../log-in/service/token.service";
+import Swal from "sweetalert2";
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'center-right',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -15,14 +31,24 @@ export class BodyComponent implements OnInit {
   size: number = 3;
   last: any;
   first: any;
+  cart:CartDto = {};
+  idUser :any;
 productList:Product[] =[];
   searchNameProduct= '';
   searchMinPrice= '';
   searchMaxPrice= '';
   flagDisplay: boolean = false;
-  constructor(private productService:ProductService,private viewportScroller:ViewportScroller) { }
+  constructor(private productService:ProductService,
+              private viewportScroller:ViewportScroller,
+              private cartService:CartService,
+              private tokenService:TokenService) {
+  }
 
   ngOnInit(): void {
+    window.scroll(0, 0);
+    if (this.tokenService.getToken()) {
+      this.idUser = this.tokenService.getId();
+    }
   this.getAll(this.size);
   }
   getAll(size: number): void{
@@ -58,5 +84,17 @@ this.ngOnInit();
 
   scrollToBlog() {
     this.viewportScroller.scrollToPosition([0, 2200]);
+  }
+
+  addProductToCart(item: Product) {
+    this.cart.productDto=item;
+    this.cart.quantity=1;
+    this.cart.id = Number(this.idUser);
+    this.cartService.addProductToCart(this.cart).subscribe(data=>{
+      Toast.fire({
+        html: '<span style="font-size: 16px;color: blue">Đã thêm vào giỏ</span>  <img style="width: 250px;height: 100px;object-fit: cover"  src="' +item.imageOne  + '">'
+      })
+    },);
+
   }
 }
