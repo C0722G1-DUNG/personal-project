@@ -79,7 +79,7 @@ productList:Product[] =[];
 
 
   search() {
-this.ngOnInit();
+    this.getAll(this.size);
   }
 
   scrollToBlog() {
@@ -92,9 +92,11 @@ this.ngOnInit();
     this.cart.id = Number(this.idUser);
     this.cartService.addProductToCart(this.cart).subscribe(data=>{
       Toast.fire({
-        html: '<span style="font-size: 16px;color: blue">Đã thêm vào giỏ</span>  <img style="width: 250px;height: 100px;object-fit: cover"  src="' +item.imageOne  + '">'
+        html: '<span style="font-size: 16px;color: blue">Đã thêm vào giỏ</span>  <img style="width: 200px;height: 100px;object-fit: cover"  src="' +item.imageOne  + '">'
       })
-    },);
+    },error => {
+      alert("thêm thất bại");
+    });
 
   }
 }

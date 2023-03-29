@@ -7,7 +7,7 @@
           <div class="card-body text-black">
 
             <div class="row">
-              <div class="col-lg-6 px-5 py-4">
+              <div class="col-lg-6 px-5 py-4" style="overflow: auto; height: 500px">
 
                 <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Giỏ hàng của bạn</h3>
 
@@ -21,20 +21,18 @@
                     <h5 class="text-primary">{{item.nameProduct}}</h5>
                     <p class="fw-bold mb-0 me-5 pe-3 text-danger">{{item.price| number}}</p>
                     <div class="d-flex align-items-center">
-                      <div class="input-group quantity mx-auto" style="width: 140px;">
-                        <div class="input-group-btn">
-                          <button class="btn btn-sm btn-primary btn-minus" (click)="minus(item.idCart)">
-                            <i class="fa fa-minus"></i>
-                          </button>
-                        </div>
-                        <span class="form-control bg-secondary border-0 text-center" id="quantity{{item.idCart}}">{{item.quantity}}</span>
-                        <div class="input-group-btn">
-                          <button class="btn btn-sm btn-primary btn-plus" (click)="plus(item.idCart)">
-                            <i class="fa fa-plus"></i>
-                          </button>
-                        </div>
+                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                        <button class="btn btn-link px-2"
+                                (click)="minus(item.idCart)" >
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <span class="form-control  border-0 text-center" id="quantity{{item.idCart}}">{{item.quantity}}</span>
+                        <button class="btn btn-link px-2"
+                                (click)="plus(item.idCart)" >
+                          <i class="fas fa-plus" ></i>
+                        </button>
                       </div>
-                      <p class="fw-bold mb-0 me-5 pe-3 text-danger">{{item.totalCost| number}}</p>
+<!--                      <p class="fw-bold mb-0 me-5 pe-3 text-danger">{{item.totalCost| number}}</p>-->
                     </div>
                   </div>
                 </div>
@@ -56,10 +54,11 @@
                     </p>
                   </div>
                   <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
+                  <h5 class="fw-bold mb-0">Tổng sản phẩm:{{totalCart.quantityUser}}</h5>
                   <div class="d-flex justify-content-between p-2 mb-2 "
                        style="background-color: #e1f5fe;" >
                     <h5 class="fw-bold mb-0">Tổng:</h5>
-                    <h5 class="fw-bold mb-0">{{totalCart.totalCostUser}}</h5>
+                    <h5 class="fw-bold mb-0">{{totalCart.totalCostUser| number}}</h5>
                   </div>
 
                   <button type="button" class="btn btn-primary btn-block btn-lg">Mua ngay</button>

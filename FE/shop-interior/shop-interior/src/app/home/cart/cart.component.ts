@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
   flagDisplay = false;
   totalCost = 0;
 
-  constructor(private cartService: CartService, private tokenService: TokenService, private title: Title,private a:ShareService) {
+  constructor(private cartService: CartService, private tokenService: TokenService, private title: Title,private shareService:ShareService) {
     this.title.setTitle('giỏ hàng');
   }
 
