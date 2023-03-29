@@ -17,4 +17,5 @@ public interface ICartService {
     void save(Cart cart);
     Optional<Cart> findById(Integer id);
     ITotalCart totalCostUser(User user);
+    void  remove(Cart cart);
 }

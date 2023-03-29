@@ -28,9 +28,9 @@ public interface ICartRepository extends JpaRepository<Cart,Integer> {
             nativeQuery = true)
     List<ICartDto> findAllByUser(@Param("idUser") int idUser);
 
-    @Query(value = "select sum(c.quantity*p.price)  as totalCostUser from cart c " +
+    @Query(value = "select sum(c.quantity*p.price) as totalCostUser, sum(c.quantity) as quantityUser from cart c " +
             "join product p on c.product_id_product = p.id_product where c.user_id = :idUser",
-            countQuery = "select sum(c.quantity*p.price)  as totalCostUser from cart c " +
+            countQuery = "select sum(c.quantity*p.price) as totalCostUser, sum(c.quantity) as quantityUser from cart c " +
                     "join product p on c.product_id_product = p.id_product where c.user_id = :idUser",
             nativeQuery = true)
     ITotalCart totalCostUser(@Param("idUser") int idUser);

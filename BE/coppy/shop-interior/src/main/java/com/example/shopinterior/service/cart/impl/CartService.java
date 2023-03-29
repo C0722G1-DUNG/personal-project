@@ -41,4 +41,9 @@ public class CartService implements ICartService {
     public ITotalCart totalCostUser(User user) {
         return iCartRepository.totalCostUser(user.getId());
     }
+
+    @Override
+    public void remove(Cart cart) {
+        iCartRepository.deleteById(cart.getIdCart());
+    }
 }

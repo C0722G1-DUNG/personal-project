@@ -14,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,6 +56,9 @@ public class CartRestController {
         if (cart.isPresent()){
             Cart cartOld = cart.get();
             cartOld.setQuantity(cartOld.getQuantity()-1);
+            if (cartOld.getQuantity()<=0){
+                cartOld.setQuantity(1);
+            }
             iCartService.save(cartOld);
             return new ResponseEntity<>(cartOld, HttpStatus.OK);
         }
@@ -99,5 +100,14 @@ public class CartRestController {
                 }
             }
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Cart> deleteProductToCart(@PathVariable int id){
+       Optional<Cart> cart =  iCartService.findById(id);
+        if (cart.isPresent()){
+            iCartService.remove(cart.get());
+            return new ResponseEntity("xóa thành công", HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
