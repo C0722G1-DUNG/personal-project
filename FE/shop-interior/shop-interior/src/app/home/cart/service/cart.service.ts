@@ -33,4 +33,9 @@ export class CartService {
   minus(idCart: number) {
     return this.httpClient.get(this.API_URL + '/minus/'+idCart);
   }
+
+
+  deleteCart(idCart: number) {
+    return this.httpClient.delete(this.API_URL+'/delete/'+idCart);
+  }
 }
