@@ -37,7 +37,8 @@ public class CartRestController {
                 return new ResponseEntity<>(cartList, HttpStatus.OK);
             }
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        List<ICartDto> cartList = iCartService.findAllByUser(user.orElse(null));
+        return new ResponseEntity<>(cartList,HttpStatus.OK);
     }
     @GetMapping("total")
     public ResponseEntity<ITotalCart> totalCart(@RequestParam(defaultValue = "") int idAccount) {
@@ -48,7 +49,8 @@ public class CartRestController {
                return new ResponseEntity<>(iCartDto, HttpStatus.OK);
            }
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        ITotalCart iCartDto = iCartService.totalCostUser(user.orElse(null));
+        return new ResponseEntity<>(iCartDto,HttpStatus.OK);
     }
     @GetMapping("minus/{id}")
     public ResponseEntity<Cart> minQuantity(@PathVariable Integer id){
@@ -104,10 +106,10 @@ public class CartRestController {
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Cart> deleteProductToCart(@PathVariable int id){
        Optional<Cart> cart =  iCartService.findById(id);
-        if (cart.isPresent()){
-            iCartService.remove(cart.get());
-            return new ResponseEntity("xóa thành công", HttpStatus.OK);
+        if (!cart.isPresent()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        iCartService.remove(cart.get());
+        return new ResponseEntity(cart, HttpStatus.OK);
     }
 }

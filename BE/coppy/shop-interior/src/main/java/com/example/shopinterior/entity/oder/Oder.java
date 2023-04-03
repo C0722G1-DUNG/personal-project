@@ -20,9 +20,13 @@ public class Oder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idOder;
-    private String flagDelete;
+    private String code;
+    private String deliveryAddress;
+    private String deliverPhone;
+    private boolean flagDelete = false;
     private String orderDate;
-    private String paymentMethod;
+    private boolean paymentMethod = false;
+    private double orderValue;
     @JsonManagedReference
     @ManyToOne
     private User user;
