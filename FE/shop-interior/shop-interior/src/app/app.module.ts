@@ -13,7 +13,8 @@ import {LogInModule} from "./log-in/log-in.module";
 import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment";
 import {ProductModule} from "./product/product.module";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {OderCreateComponent} from "./home/cart/oder/oder-create/oder-create.component";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {FormsModule} from "@angular/forms";
     FooterComponent,
     CartComponent,
     DetailComponent,
+    OderCreateComponent
     // LogInComponent
   ],
     imports: [
@@ -31,7 +33,8 @@ import {FormsModule} from "@angular/forms";
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         ProductModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

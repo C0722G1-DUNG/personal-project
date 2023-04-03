@@ -30,13 +30,14 @@ export class DetailComponent implements OnInit {
   id = 0;
   product: Product = {imageOne: "", imageThree: "", imageTwo: ""};
   urlShow: string | undefined;
-  quantityProduct: number = 0;
+  quantityProduct: number = 1;
   idUser :any;
   constructor(private title: Title,
               private activatedRoute: ActivatedRoute,
               private productService: ProductService,
               private  tokenService: TokenService,
-              private cartService:CartService) {
+              private cartService:CartService,
+              private shareService:ShareService) {
     this.title.setTitle('xem chi tiết sản phẩm')
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = parseInt(paramMap.get('id') as string);
@@ -91,7 +92,8 @@ export class DetailComponent implements OnInit {
       Toast.fire({
         html: '<span style="font-size: 16px;color: blue">Đã thêm vào giỏ</span>  <img style="width: 200px;height: 100px;object-fit: cover"  src="' +product.imageOne  + '">'
       })
-      this.quantityProduct = 0;
+      this.quantityProduct = 1;
+      this.shareService.sendClickEvent()
     },error => {
       alert("thêm thất bại");
     });

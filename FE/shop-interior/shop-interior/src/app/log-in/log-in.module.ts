@@ -5,10 +5,11 @@ import { LogInRoutingModule } from './log-in-routing.module';
 import {LoginComponent} from "./log-in.component";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import {SignUpComponent} from "./sign-up/sign-up.component";
 
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, SignUpComponent],
   imports: [
     CommonModule,
     LogInRoutingModule,

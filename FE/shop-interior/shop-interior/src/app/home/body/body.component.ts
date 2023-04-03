@@ -7,6 +7,7 @@ import {ProductDto} from "../../entity/product-dto";
 import {CartDto} from "../../entity/cart-dto";
 import {TokenService} from "../../log-in/service/token.service";
 import Swal from "sweetalert2";
+import {ShareService} from "../../log-in/service/share.service";
 
 const Toast = Swal.mixin({
   toast: true,
@@ -41,11 +42,11 @@ productList:Product[] =[];
   constructor(private productService:ProductService,
               private viewportScroller:ViewportScroller,
               private cartService:CartService,
-              private tokenService:TokenService) {
+              private tokenService:TokenService,private  shareService:ShareService) {
   }
 
   ngOnInit(): void {
-    window.scroll(0, 0);
+    // window.scroll(0, 0);
     if (this.tokenService.getToken()) {
       this.idUser = this.tokenService.getId();
     }
@@ -94,6 +95,7 @@ productList:Product[] =[];
       Toast.fire({
         html: '<span style="font-size: 16px;color: blue">Đã thêm vào giỏ</span>  <img style="width: 200px;height: 100px;object-fit: cover"  src="' +item.imageOne  + '">'
       })
+      this.shareService.sendClickEvent()
     },error => {
       alert("thêm thất bại");
     });

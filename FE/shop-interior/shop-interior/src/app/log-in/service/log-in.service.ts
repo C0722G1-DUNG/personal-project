@@ -25,7 +25,7 @@ export class LogInService {
     return this.http.post('http://localhost:8080/api/auth/change-password',{username: this.tokenService.getUsername(),password: obj.password,newPassword:obj.newPassword,confirmPassword:obj.confirmPassword})
   }
 
-  profile(username: any):Observable<any> {
-    return this.http.get<any>('http://localhost:8080/api/auth/profile/'+username);
+  profile(id: any):Observable<any> {
+    return this.http.get<any>('http://localhost:8080/api/auth/profile/'+id);
   }
 }

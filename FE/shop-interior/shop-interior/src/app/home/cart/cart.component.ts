@@ -5,7 +5,7 @@ import {TokenService} from "../../log-in/service/token.service";
 import {Title} from "@angular/platform-browser";
 import {ITotalCart} from "../../entity/itotal-cart";
 import {ShareService} from "../../log-in/service/share.service";
-import {render} from 'creditcardpayments/creditCardPayments';
+
 
 
 @Component({
@@ -15,7 +15,7 @@ import {render} from 'creditcardpayments/creditCardPayments';
 })
 export class CartComponent implements OnInit {
   cartList: Cart[] = [];
-  totalCart: ITotalCart = {};
+  totalCart: ITotalCart = {quantityUser: 0, totalCostUser:0};
   idUser: string | null | undefined;
   mess = "";
   flagDisplay = false;
@@ -37,25 +37,7 @@ export class CartComponent implements OnInit {
     }
     this.list();
     this.getCostTotal();
-    this.loaderPayPal();
   }
-
-  loaderPayPal() {
-    setTimeout(()=>{
-      render(
-        {
-          id: "#payments",
-          currency: "USD",
-          value: "100.00",
-          onApprove: (details) => {
-            alert("thanh toán thành công");
-          }
-        }
-      );
-    }, 200);
-
-  }
-
   private list() {
     this.cartService.getListCart(this.idUser).subscribe(data => {
       this.cartList = data;
@@ -77,7 +59,6 @@ export class CartComponent implements OnInit {
     this.cartService.totalCost(this.idUser).subscribe(data => {
         this.totalCart = data;
       }
-
       , error => {
       },
       () => {
@@ -86,6 +67,7 @@ export class CartComponent implements OnInit {
 
   minus(idCart: number) {
     this.cartService.minus(idCart).subscribe(data => {
+        this.shareService.sendClickEvent()
         this.ngOnInit();
       }
       , error => {
@@ -96,6 +78,7 @@ export class CartComponent implements OnInit {
 
   plus(idCart: number) {
     this.cartService.plus(idCart).subscribe(data => {
+        this.shareService.sendClickEvent()
         this.ngOnInit();
       }
       , error => {
