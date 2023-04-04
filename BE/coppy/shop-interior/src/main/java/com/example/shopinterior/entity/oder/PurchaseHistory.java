@@ -25,5 +25,4 @@ public class PurchaseHistory {
     @JsonManagedReference
     @ManyToOne
     private Product product;
-
 }
