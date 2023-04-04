@@ -1,0 +1,38 @@
+
+  <div class="modal fade" id="deleteFormModal" tabindex="-1" aria-labelledby="deleteFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="deleteFormModalLabel">xem chi tiết</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-danger table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Hình ảnh sản phẩm</th>
+              <th scope="col">Tên sản phẩm</th>
+              <th scope="col">Số tiền một sản phẩm</th>
+              <th scope="col">Số lượng mua</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr *ngFor="let purchaseHistory of purchaseHistoryDetail">
+              <td>
+                <img style="width: 105px;height: 70px" sizes="(max-width: 300px) 100vw, 300px" [src]="purchaseHistory.imageOne">
+              </td>
+              <td>{{purchaseHistory.nameProduct}}</td>
+              <td>{{purchaseHistory.price}}</td>
+              <td>{{purchaseHistory.quantity}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

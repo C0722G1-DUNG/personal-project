@@ -1,0 +1,44 @@
+<div style="margin-top: 200px">
+  <table class="table table-danger table-striped">
+    <thead>
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Tên người mua</th>
+      <th scope="col">Ngày mua</th>
+      <th scope="col">Địa chỉ nhận hàng</th>
+      <th scope="col">Số điện thoại nhận hàng</th>
+      <th scope="col">Tổng số tiền đơn hàng</th>
+    </tr>
+    </thead>
+    <tbody >
+    <tr *ngFor="let oder of oderList; index as i">
+      <th scope="row">{{(page*3)+(i+1)}}</th>
+      <td>{{oder.name}}</td>
+      <td>{{oder.orderDate}}</td>
+      <td>{{oder.deliveryAddress}}</td>
+      <td>{{oder.deliverPhone}}</td>
+      <td>{{oder.orderValue}}</td>
+      <td ><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFormModal" (click)="getDetailPurchaseHistory(oder.idOder)">
+        Xem chi tiết
+      </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+<app-oder-detail [purchaseHistoryDetail]="purchaseHistoryList"></app-oder-detail>
+  <!--        ---------------Nút phân trang----------------->
+  <div class="row" style="margin: 0; padding: 0">
+    <div class="col-4"></div>
+    <div class="col-1">
+      <button type="button" class="btn btn-outline-success" (click)="previousPage()" *ngIf="page > 0">Trước</button>
+    </div>
+    <div class="col-2 text-center">
+      <p class="text-success" style="margin-top: 5px">Trang {{page + 1}}/ {{totalPage}} trang</p>
+    </div>
+    <div class="col-1">
+      <button type="button" class="btn btn-outline-success" (click)="nextPage()" *ngIf="page < totalPage - 1">Sau
+      </button>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>

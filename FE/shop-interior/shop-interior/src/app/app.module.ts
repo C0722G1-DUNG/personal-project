@@ -15,6 +15,8 @@ import {environment} from "../environments/environment";
 import {ProductModule} from "./product/product.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {OderCreateComponent} from "./home/cart/oder/oder-create/oder-create.component";
+import {OderListComponent} from "./home/cart/oder/oder-list/oder-list.component";
+import {HomeModule} from "./home/home.module";
 
 @NgModule({
   declarations: [
@@ -24,18 +26,20 @@ import {OderCreateComponent} from "./home/cart/oder/oder-create/oder-create.comp
     FooterComponent,
     CartComponent,
     DetailComponent,
-    OderCreateComponent
+    OderCreateComponent,
+    OderListComponent
     // LogInComponent
   ],
-    imports: [
-        LogInModule,
-        BrowserModule,
-        AppRoutingModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        ProductModule,
-        FormsModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    LogInModule,
+    BrowserModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    ProductModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HomeModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
