@@ -43,4 +43,9 @@ public class ProductService implements IProductService {
         return iProductRepository.findById(id);
     }
 
+    @Override
+    public void update(Product product) {
+        iProductRepository.save(product);
+    }
+
 }

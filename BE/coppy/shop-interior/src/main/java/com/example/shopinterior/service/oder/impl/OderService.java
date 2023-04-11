@@ -1,6 +1,7 @@
 package com.example.shopinterior.service.oder.impl;
 
 import com.example.shopinterior.dto.oder.IOderDto;
+import com.example.shopinterior.dto.oder.ITotalOrderValue;
 import com.example.shopinterior.entity.oder.Oder;
 import com.example.shopinterior.repository.oder.IOderRepository;
 import com.example.shopinterior.service.oder.IOderService;
@@ -22,5 +23,15 @@ public class OderService implements IOderService {
     @Override
     public Page<IOderDto> showListOder(Pageable pageable) {
         return iOderRepository.showListOder(pageable);
+    }
+
+    @Override
+    public Page<IOderDto> showListOderDetailUser(int idUser, Pageable pageable) {
+        return iOderRepository.showListOderDetailUser(idUser,pageable);
+    }
+
+    @Override
+    public ITotalOrderValue totalOderDetailUser(int idUser) {
+        return iOderRepository.totalOderDetailUser(idUser);
     }
 }

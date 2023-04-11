@@ -45,13 +45,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtProvider jwtProvider;
-    /**
-     * Created by: CuongVV
-     * Date created: 27/2/2023
-     * Function: sign up to create user with sign up form
-     * @param signUpForm
-     * @return
-     */
+
     @PostMapping("/signup")
     public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm,BindingResult bindingResult) {
         new SignUpForm().validate(iUserService.findAll(),signUpForm,bindingResult);
@@ -86,13 +80,7 @@ public class AuthController {
         iUserService.save(user);
         return new ResponseEntity<>(new ResponseMessage("Đăng kí thành công"), HttpStatus.OK);
     }
-    /**
-     * Created by: CuongVV
-     * Date created: 27/2/2023
-     * Function: login with only username and password
-     * @param signInForm
-     * @return
-     */
+
     @PostMapping("/login")
 
     public ResponseEntity<?> login( @RequestBody SignInForm signInForm ) {
@@ -109,13 +97,7 @@ public class AuthController {
                 userPrinciple.getDateOfBirth()
                 , userPrinciple.getAuthorities()));
     }
-    /**
-     * Created by: CuongVV
-     * Date created: 27/2/2023
-     * Function: change password for user
-     * @param changePasswordForm
-     * @return
-     */
+
     @PostMapping("/change-password")
     public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordForm changePasswordForm,BindingResult bindingResult) {
         if (!Objects.equals(changePasswordForm.getNewPassword(), changePasswordForm.getConfirmPassword())) {
@@ -153,12 +135,7 @@ public class AuthController {
         }
         return new ResponseEntity<>(new ResponseMessage("Đăng xuất thất bại"),HttpStatus.NOT_ACCEPTABLE);
     }
-    /**
-     * Created by: CuongVV
-     * Date created: 27/2/2023
-     * Function: update user
-     * @param: none
-     */
+
     @PostMapping("/update")
     public ResponseEntity<?> updateUser(@Valid @RequestBody UpdateUserForm updateUserForm,BindingResult bindingResult) {
         new UpdateUserForm().validate(iUserService.findAll(),updateUserForm,bindingResult);
@@ -168,12 +145,7 @@ public class AuthController {
         iUserService.updateUser(updateUserForm);
         return new ResponseEntity<>(new ResponseMessage("Chỉnh sửa thông tin thành công"),HttpStatus.ACCEPTED);
     }
-    /**
-     * Created by: CuongVV
-     * Date created: 27/2/2023
-     * Function: get all customer
-     * @param: none
-     */
+
     @GetMapping("/customer")
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(iUserService.findAll(),HttpStatus.OK);

@@ -14,4 +14,5 @@ public interface IProductService {
     void saveProduct(Product product);
     Page<IProductDto> showList(Pageable pageable);
     Optional<Product> findById(Integer id);
+    void update(Product product);
 }

@@ -11,4 +11,5 @@ public interface IProductDto {
     String getImageOne();
     String getImageTwo();
     String getImageThree();
+    int getQuantity();
 }

@@ -69,11 +69,15 @@ public class CartRestController {
     @GetMapping("plus/{id}")
     public ResponseEntity<Cart> maxQuantity(@PathVariable Integer id){
         Optional<Cart> cart = iCartService.findById(id);
+        Optional<Product> product = iProductService.findById(cart.get().getProduct().getIdProduct());
         if (cart.isPresent()){
-            Cart cartOld = cart.get();
-            cartOld.setQuantity(cartOld.getQuantity()+1);
-            iCartService.save(cartOld);
-            return new ResponseEntity<>(cartOld, HttpStatus.OK);
+                Cart cartOld = cart.get();
+            if (product.get().getQuantity()>cart.get().getQuantity()){
+                cartOld.setQuantity(cartOld. getQuantity()+1);
+                iCartService.save(cartOld);
+                return new ResponseEntity<>(cartOld, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
@@ -82,23 +86,29 @@ public class CartRestController {
     public ResponseEntity<Cart> addProductToCart(@RequestBody CartDto cartDto) {
             Optional<Product> product = iProductService.findById(cartDto.getProductDto().getIdProduct());
             Optional<User> user = iUserService.findById(cartDto.getId());
-            if (product.isPresent() && user.isPresent()) {
-                Optional<Cart> cart = iCartService.findCartByUserAndProduct(user.get(),product.get());
-                if (cart.isPresent()) {
-                    Cart cartOld = cart.get();
-                    cartOld.setQuantity(cartOld.getQuantity() + cartDto.getQuantity());
-                    iCartService.save(cartOld);
-                    return new ResponseEntity<>(cartOld, HttpStatus.OK);
-                } else {
-                    Cart cartNew = new Cart();
-                    BeanUtils.copyProperties(cartDto, cartNew);
-                    cartNew.setUser(user.get());
-                    cartNew.setProduct(product.get());
-                    if (cartNew.getQuantity() <= 0) {
-                        cartNew.setQuantity(1);
+                if (product.isPresent() && user.isPresent()) {
+                    Optional<Cart> cart = iCartService.findCartByUserAndProduct(user.get(),product.get());
+                    if (product.get().getQuantity()>=cartDto.getQuantity() && cartDto.getQuantity()>=1){
+                    if (cart.isPresent()) {
+                        Cart cartOld = cart.get();
+                        cartOld.setQuantity(cartOld.getQuantity() + cartDto.getQuantity());
+                        if (product.get().getQuantity() < cartOld.getQuantity()) {
+                            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                        }
+
+                            iCartService.save(cartOld);
+                        return new ResponseEntity<>(cartOld, HttpStatus.OK);
+                    } else {
+                        Cart cartNew = new Cart();
+                        BeanUtils.copyProperties(cartDto, cartNew);
+                        cartNew.setUser(user.get());
+                        cartNew.setProduct(product.get());
+                        if (cartNew.getQuantity() <= 0) {
+                            cartNew.setQuantity(1);
+                        }
+                        iCartService.save(cartNew);
+                        return new ResponseEntity<>(cartNew, HttpStatus.OK);
                     }
-                    iCartService.save(cartNew);
-                    return new ResponseEntity<>(cartNew, HttpStatus.OK);
                 }
             }
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
