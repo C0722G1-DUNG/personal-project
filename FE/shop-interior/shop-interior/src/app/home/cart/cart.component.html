@@ -57,8 +57,7 @@
                        style="background-color: #e1f5fe;" >
                     <h5 class="fw-bold mb-0">Tổng:</h5>
                     <h5 class="fw-bold mb-0">{{totalCart.totalCostUser| number}}</h5>
-                    <button routerLink="/oder/create">Thanh toán</button>
-
+                    <button [disabled]="cartList.length == 0" routerLink="/oder/create">Thanh toán</button>
                   </div>
 
                 </div>

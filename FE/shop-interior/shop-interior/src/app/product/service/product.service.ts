@@ -32,4 +32,7 @@ return  this.httpClient.get<Product>(this.API_URL+'/'+id);
   getListProduct(s: string, s2: string, s3: string,size: number) {
     return this.httpClient.get<Product[]>(this.API_URL+'?searchNameProduct='+s3+'&&searchMinPrice='+s+'&&searchMaxPrice='+s2+'&&size='+size);
   }
+  getListProductPage(s: string, s2: string, s3: string,page: number) {
+    return this.httpClient.get<Product[]>(this.API_URL+'?searchNameProduct='+s3+'&&searchMinPrice='+s+'&&searchMaxPrice='+s2+'&&page='+page);
+  }
 }

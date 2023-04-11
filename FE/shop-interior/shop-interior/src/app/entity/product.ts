@@ -9,4 +9,5 @@ export interface Product {
   imageOne: string;
   imageTwo: string;
   imageThree: string;
+  quantity?: number;
 }

@@ -32,11 +32,6 @@
               <span>Tổng thành tiền</span>
               <strong>{{totalCart.totalCostUser}}</strong>
             </div>
-            <div class="list-group-item d-flex justify-content-between">
-              <hr class="mb-4">
-              <button  class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang">Đặt
-                hàng</button>
-            </div>
             <div id="payments"></div>
           </div>
         </div>
@@ -51,10 +46,18 @@
             <div class="col-md-12">
               <label for="kh_diachi">Địa chỉ</label>
               <input type="text" class="form-control mb-3" name="kh_diachi" id="kh_diachi" formControlName="deliveryAddress">
+              <div style="position: absolute">
+                <p *ngIf="formOderCreate.controls.deliveryAddress.hasError('required')&& formOderCreate.controls.deliveryAddress.touched "
+                   style="color: red">Vui lòng không được để trống.</p>
+              </div>
             </div>
             <div class="col-md-12">
               <label for="kh_dienthoai">Điện thoại</label>
               <input type="text" class="form-control mb-3" name="kh_dienthoai" id="kh_dienthoai" formControlName="deliverPhone">
+              <div style="position: absolute">
+                <p *ngIf="formOderCreate.controls.deliverPhone.hasError('required')&& formOderCreate.controls.deliverPhone.touched "
+                   style="color: red">Vui lòng không được để trống.</p>
+              </div>
             </div>
           </div>
         </div>

@@ -38,10 +38,10 @@
           <p class="product-description">{{product.description}}</p>
           <b>Vật liệu: </b>
           <p>- {{product.nameCategory}}.</p>
+          <b>Số lượng trong kho: </b>
+          <p>- {{product.quantity}}.</p>
           <h4 class="price">Giá: <span style="margin-left: 10px">{{product.price |number}}₫</span></h4>
-          <h5 class="colors" style="display: inline">Trạng thái:
-            <del style="color: silver;margin-left: 10px">Còn hàng</del>
-            <span style="margin-left: 20px;color: red">Hết hàng</span>
+          <h5 class="colors" style="display: inline">
             <input [(ngModel)]="quantityProduct">
           </h5>
 

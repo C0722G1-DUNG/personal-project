@@ -1,1 +1,43 @@
-<p>product-list works!</p>
+<div style="margin-top: 200px">
+  <table class="table table-danger table-striped">
+    <thead>
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Tên sản phẩm</th>
+      <th scope="col">Số lượng sản phẩm</th>
+      <th scope="col">Đơn giá sản phảm</th>
+      <th scope="col">Hình ảnh minh họa</th>
+      <th scope="col">Chức năng</th>
+    </tr>
+    </thead>
+    <tbody >
+    <tr *ngFor="let product of productList; index as i">
+      <th scope="row">{{(page*6)+(i+1)}}</th>
+      <td>{{product.nameProduct}}</td>
+      <td>{{product.quantity}}</td>
+      <td>{{product.price | number}}</td>
+      <td><img style="width: 105px;height: 70px" sizes="(max-width: 300px) 100vw, 300px"  [src]="product.imageOne"></td>
+<!--      <td ><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFormModal" (click)="getDetailPurchaseHistory(oder.idOder)">-->
+<!--        Xem chi tiết-->
+<!--      </button>-->
+<!--      </td>-->
+    </tr>
+    </tbody>
+  </table>
+<!--  <app-oder-detail [purchaseHistoryDetail]="purchaseHistoryList"></app-oder-detail>-->
+  <!--        ---------------Nút phân trang----------------->
+  <div class="row" style="margin: 0; padding: 0">
+    <div class="col-4"></div>
+    <div class="col-1">
+      <button type="button" class="btn btn-outline-success" (click)="previousPage()" *ngIf="page > 0">Trước</button>
+    </div>
+    <div class="col-2 text-center">
+      <p class="text-success" style="margin-top: 5px">Trang {{page + 1}}/ {{totalPage}} trang</p>
+    </div>
+    <div class="col-1">
+      <button type="button" class="btn btn-outline-success" (click)="nextPage()" *ngIf="page < totalPage - 1">Sau
+      </button>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>

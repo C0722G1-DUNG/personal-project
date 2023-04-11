@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   totalCart: ITotalCart = {quantityUser: 0, totalCostUser:0};
   user: User = {};
   idUser: string | null | undefined;
-  role = 'none';
+  role = '';
   isLogged = false
   name = 'Đăng nhập'
   token: any;
@@ -29,8 +29,8 @@ export class HeaderComponent implements OnInit {
               private share: ShareService,
               private cartService: CartService) {
     this.isLogged =this.tokenService.isLogger()
-
     this.loader()
+    this.getCostTotal();
     this.share.getClickEvent().subscribe(data => {
       this.isLogged =this.tokenService.isLogger()
       this.loader();
@@ -45,8 +45,8 @@ export class HeaderComponent implements OnInit {
   }
 
   loader() {
-    this.isLogged = this.tokenService.isLogger();
     if (this.isLogged) {
+      this.role = this.tokenService.getRole();
       this.idUser = this.tokenService.getId();
       this.getCostTotal();
       this.login.profile(this.tokenService.getId()).subscribe(
@@ -58,6 +58,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    this.role='';
     this.isLogged = false
     this.tokenService.logout();
     this.router.navigateByUrl('/home');

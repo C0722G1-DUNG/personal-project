@@ -95,7 +95,14 @@ export class DetailComponent implements OnInit {
       this.quantityProduct = 1;
       this.shareService.sendClickEvent()
     },error => {
-      alert("thêm thất bại");
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'THêm vào giỏ hàng thất bại!',
+        text: 'Sản phẩm hiện quá số lượng',
+        showConfirmButton: false,
+        timer: 2000
+      })
     });
   }
 }

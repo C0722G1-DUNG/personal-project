@@ -22,7 +22,7 @@
                 <img style="width: 105px;height: 70px" sizes="(max-width: 300px) 100vw, 300px" [src]="purchaseHistory.imageOne">
               </td>
               <td>{{purchaseHistory.nameProduct}}</td>
-              <td>{{purchaseHistory.price}}</td>
+              <td>{{purchaseHistory.price | number}}</td>
               <td>{{purchaseHistory.quantity}}</td>
             </tr>
             </tbody>

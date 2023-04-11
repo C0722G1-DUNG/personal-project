@@ -1,4 +1,5 @@
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+
+<div id="carouselExampleControls" style="margin-top: -30px" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active" >
         <img style="height: 600px" src="https://arhome.vn/upload/public/media/1.%20Du%20An%202021/dung%20thiet%20ke/z2265168228492_f26d4a6304852f41e54f3bab467646631.jpg" class="d-block w-100" >
@@ -16,7 +17,13 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+
+
   <div class="myBody">
+    <div class="col-lg-3 sticky-top2"  style="margin-bottom: -50px">
+      <img src="https://firebasestorage.googleapis.com/v0/b/dataform-9eea9.appspot.com/o/Phong-khach-Pio-tao-nha-tinh-te-2.jpg?alt=media&token=4dbe4c88-82ff-4204-bf03-a9d1bbc065b5" style="width: 350px;height: 635px" >
+    </div>
+    <div style="margin-left: 250px;margin-top: -600px">
     <section class="myCourser" style="margin-bottom: 20px">
       <h1 class="title">Lời Mở Đầu</h1>
       <span> Lựa chọn nội thất phù hợp đang là một xu hướng rất thịnh hành hiện nay.<br>
@@ -24,6 +31,66 @@
                     phong thủy sẽ giúp người lãnh đạo thuận lợi, may mắn trong công việc<br>
                     giúp cho doanh nghiệp ngày càng phát triển hơn.</span>
     </section>
+      <!--      ád-->
+      <div class="container mt-5 mb-5" style="margin-left: -50px">
+        <div class="text-center">
+          <h1 style="width: 1000px;background: #b3b5c7;margin-left: 160px"><p
+            class="thanh">
+            Sản phẩm bán chạy
+          </p></h1>
+        </div>
+      </div>
+      <section class="parents" *ngIf="flagDisplay != false; else elseBlock">
+        <div class="row row-cols-1 row-cols-md-3 g-4" >
+          <div class="col" *ngFor="let item of sellingProductList">
+            <div class="card h-100">
+              <img style="width: 100%;height: 100%" [src]="item.imageOne" class="card-img-top" alt="immage">
+              <div *ngIf="role=='ROLE_CUSTOMER'" class="middle">
+                <div *ngIf="item.quantity != 0">
+                  <a *ngIf="role=='ROLE_CUSTOMER'" class="buy-now" data-toggle="modal" data-target="#detail"
+                     [routerLink]='["/cart"]' (click)="addProductToCart(item)">Mua
+                    ngay</a>
+                </div>
+                <div *ngIf="item.quantity == 0" class="img__wrapper">
+                  <a class="sold_out">hết hàng</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <h5  class="card-title">{{item.nameProduct | slice: 0 : 30}}</h5>
+                <p class="card-text">Giá: {{item.price | number}}₫</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--      ad-->
+      <br>
+      <div class="about_section layout_padding" style="background: rgba(222, 127, 98, 0.55); margin-left: 100px" >
+        <div class="container">
+          <div class="about_section_main">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="about_taital_main">
+                  <h1 class="about_taital">Vì sao chọn nội thất lại là xu hướng?</h1>
+                  <p class="about_text">Một căn nhà nhỏ ấm cúng, mang lại một không gian sống trọn vẹn không phải chỉ đơn giản được
+                    tạo dựng từ kiến trúc
+                    hay vẻ đồ sộ bề thế.Mà cách trang trí nội thất cũng là một yếu tố quan trọng để giúp cho tổ ấm của chúng ta thêm
+                    phần lung linh và tiện nghi, đẹp hơn.
+                    Tùy theo nhu cầu sở thích, kinh tế để phong cách thiết kế nội thất trở nên đa dạng và đổi mới.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div><img src="https://nhaxinh.com/wp-content/uploads/2023/03/Elegance-them-mau-thanh-lich-cho-phong-khach-hien-dai-4-397x400.jpg"
+                          class="image_3"
+                          style="width: 400px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
     <div class="d-flex zoom justify-content-center">
       <input class="form-control me-2" style="width: 10%" type="search" placeholder="từ"
              aria-label="Search" [(ngModel)]="searchMinPrice" >
@@ -33,36 +100,50 @@
              aria-label="Search" [(ngModel)]="searchNameProduct">
       <button class="btn btn-outline-warning" type="submit" style="border-radius: 50%; width: 30px"><i class="fa-brands fa-searchengin" (click)="search()"></i></button>
     </div>
-    <!--Sản phẩm hot-->
-    <div class="container mt-5 mb-5">
-      <div class="text-center">
-        <h1 style="width: 100%;background: #7f7f7f"><p
-          style="background-color: #f4f7f6;width: 30%;line-height: 5px;padding: 15px 5px 13px 5px;margin: auto;color: black; font-size: 25px">
-          SẢN PHẨM MỚI NHẤT
-        </p></h1>
+      <div class="container mt-5 mb-5" style="margin-left: -50px">
+        <div class="text-center">
+          <h1 style="width: 1000px;background: #b3b5c7;margin-left: 160px"><p
+            class="thanh">
+            Sản phẩm mới nhất
+          </p></h1>
+        </div>
       </div>
-    </div>
     <section class="parents" *ngIf="flagDisplay != false; else elseBlock">
       <div class="row row-cols-1 row-cols-md-3 g-4" >
         <div class="col" *ngFor="let iteam of productList">
           <div class="card h-100">
             <img style="width: 100%;height: 100%" [src]="iteam.imageOne" class="card-img-top" alt="immage">
-            <div class="middle">
-              <button [routerLink]="['/detail',iteam.idProduct]" class="btn btn-sm btn-outline-primary mx-2"  style="width: 100%">
-                chi tiết
-              </button>
-              <button class="btn btn-sm btn-outline-danger mx-2" (click)="addProductToCart(iteam)" style="width: 100%">
-                <i class="fa fa-cart-plus"></i>
-              </button>
+            <div *ngIf="role=='ROLE_CUSTOMER'" class="middle">
+              <div *ngIf="iteam.quantity != 0">
+                <button  [routerLink]="['/detail',iteam.idProduct]" class="btn btn-sm btn-outline-primary mx-2"  style="width: 100%">
+                  chi tiết
+                </button>
+                <button class="btn btn-sm btn-outline-danger mx-2" (click)="addProductToCart(iteam)" style="width: 100%">
+                  <i class="fa fa-cart-plus"></i>
+                </button>
+              </div>
+              <div *ngIf="iteam.quantity == 0" class="img__wrapper">
+                <a class="sold_out">hết hàng</a>
+              </div>
             </div>
             <div class="card-body">
               <h5  class="card-title">{{iteam.nameProduct | slice: 0 : 30}}</h5>
-              <p class="card-text">{{iteam.price | number}}₫</p>
+              <p class="card-text">Giá: {{iteam.price | number}}₫</p>
             </div>
           </div>
         </div>
       </div>
     </section>
+      <div style="text-align: center">
+        <a style="cursor: pointer; color: #f44336; text-decoration: none" type="button" (click)="getAll(size+6)" *ngIf="!last">
+          <i class="fas fa-angle-double-down"></i><br>Xem thêm
+        </a>
+        <a style="cursor: pointer; color: #f44336; text-decoration: none" type="button" (click)="getAll(size=6)" *ngIf="last">
+          <i class="fas fa-angle-double-up" (click)="scrollToBlog()"></i><br>
+          Ẩn bớt
+        </a>
+      </div>
+    </div>
   </div>
 <ng-template #elseBlock>
   <div class="row" style="height: 34.5rem; margin: 0; padding: 0">
@@ -71,12 +152,4 @@
     </div>
   </div>
 </ng-template>
-<a style="cursor: pointer; color: #f44336; text-decoration: none" type="button" (click)="getAll(size+3)" *ngIf="!last">
-  <i class="fas fa-angle-double-down"></i><br>
-  Xem thêm...
-</a>
-<a style="cursor: pointer; color: #f44336; text-decoration: none" type="button" (click)="getAll(size=3)" *ngIf="last">
-  <i class="fas fa-angle-double-up" (click)="scrollToBlog()"></i><br>
-  Ẩn bớt
-</a>
 

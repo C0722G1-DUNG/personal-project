@@ -1,0 +1,216 @@
+<div style="margin-top: 120px">
+  <div class="student-profile py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card shadow-sm">
+            <div class="card-header bg-transparent text-center">
+              <img class="profile_img" [src]="userDetail.avatar" alt="">
+              <h3>{{userDetail.name}}</h3>
+            </div>
+            <div class="card-body">
+              <p class="mb-0"><strong class="pr-1">Số điện thoại:</strong>{{userDetail.phoneNumber}}</p>
+              <p class="mb-0"><strong class="pr-1">Địa chỉ:</strong>{{userDetail.address}}</p>
+              <p class="mb-0"><strong class="pr-1">Độ tuổi:</strong>{{userDetail.age}}</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                xem hạng
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="mb-0">Lịch sử mua hàng của bạn</h3>
+            </div>
+            <div class="card-body pt-0">
+              <table class="table table-danger table-striped">
+                <thead>
+                <tr>
+                  <th scope="col">STT</th>
+                  <th scope="col">Tên người mua</th>
+                  <th scope="col">Ngày mua</th>
+                  <th scope="col">Địa chỉ nhận hàng</th>
+                  <th scope="col">Số điện thoại nhận hàng</th>
+                  <th scope="col">Tổng số tiền đơn hàng</th>
+                  <th scope="col">Chi tiết</th>
+                </tr>
+                </thead>
+                <tbody >
+                <tr *ngFor="let oder of oderList; index as i">
+                  <th scope="row">{{(page*6)+(i+1)}}</th>
+                  <td>{{oder.name}}</td>
+                  <td>{{oder.orderDate}}</td>
+                  <td>{{oder.deliveryAddress}}</td>
+                  <td>{{oder.deliverPhone}}</td>
+                  <td>{{oder.orderValue | number}}</td>
+                  <td ><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteFormModal" (click)="getDetailPurchaseHistory(oder.idOder)">
+                    Xem chi tiết
+                  </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <app-profile-detail [purchaseHistoryDetail]="purchaseHistoryList"></app-profile-detail>
+  <!--        ---------------Nút phân trang----------------->
+  <div class="row" style="margin: 0; padding: 0">
+    <div class="col-4"></div>
+    <div class="col-1">
+      <button type="button" class="btn btn-outline-success" (click)="previousPage()" *ngIf="page > 0">Trước</button>
+    </div>
+    <div class="col-2 text-center">
+      <p class="text-success" style="margin-top: 5px">Trang {{page + 1}}/ {{totalPage}} trang</p>
+    </div>
+    <div class="col-1">
+      <button type="button" class="btn btn-outline-success" (click)="nextPage()" *ngIf="page < totalPage - 1">Sau
+      </button>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="totalOderUser <=1000000">
+          <nav class="form-steps" >
+            <div class="form-steps__item form-steps__item--active">
+              <div class="form-steps__item-content">
+                <span class="form-steps__item-icon">1</span>
+                <span class="form-steps__item-text">Bạc</span>
+              </div>
+            </div>
+            <div class="form-steps__item">
+              <div class="form-steps__item-content">
+                <span class="form-steps__item-icon">2</span>
+                <span class="form-steps__item-line"></span>
+                <span class="form-steps__item-text">Vàng</span>
+              </div>
+            </div>
+            <div class="form-steps__item">
+              <div class="form-steps__item-content">
+                <span class="form-steps__item-icon">3</span>
+                <span class="form-steps__item-line"></span>
+                <span class="form-steps__item-text">Bạch kim</span>
+              </div>
+            </div>
+            <div class="form-steps__item">
+              <div class="form-steps__item-content">
+                <span class="form-steps__item-icon">4</span>
+                <span class="form-steps__item-line"></span>
+                <span class="form-steps__item-text">Kim cương</span>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+
+        <nav class="form-steps" *ngIf=" 1000000 < totalOderUser && totalOderUser <= 30000000">
+          <div class="form-steps__item form-steps__item--completed">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">1</span>
+              <span class="form-steps__item-text">Bạc</span>
+            </div>
+          </div>
+          <div class="form-steps__item form-steps__item--active">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">2</span>
+              <span class="form-steps__item-line"></span>
+              <span class="form-steps__item-text">Vàng</span>
+            </div>
+          </div>
+          <div class="form-steps__item">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">3</span>
+              <span class="form-steps__item-line"></span>
+              <span class="form-steps__item-text">Bạch kim</span>
+            </div>
+          </div>
+          <div class="form-steps__item">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">4</span>
+              <span class="form-steps__item-line"></span>
+              <span class="form-steps__item-text">Kim cương</span>
+            </div>
+          </div>
+        </nav>
+
+        <nav class="form-steps" *ngIf="30000000 < totalOderUser && totalOderUser <= 50000000">
+          <div class="form-steps__item form-steps__item--completed">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">1</span>
+              <span class="form-steps__item-text">Bạc</span>
+            </div>
+          </div>
+          <div class="form-steps__item form-steps__item--completed">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">2</span>
+              <span class="form-steps__item-line"></span>
+              <span class="form-steps__item-text">Vàng</span>
+            </div>
+          </div>
+          <div class="form-steps__item form-steps__item--active">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">3</span>
+              <span class="form-steps__item-line"></span>
+              <span class="form-steps__item-text">Bạch kim</span>
+            </div>
+          </div>
+          <div class="form-steps__item">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">4</span>
+              <span class="form-steps__item-line"></span>
+              <span class="form-steps__item-text">Kim cương</span>
+            </div>
+          </div>
+        </nav>
+
+        <nav class="form-steps" *ngIf="totalOderUser > 50000000">
+          <div class="form-steps__item form-steps__item--completed">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">1</span>
+              <span class="form-steps__item-text">Bạc</span>
+            </div>
+          </div>
+          <div class="form-steps__item form-steps__item--completed">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">2</span>
+              <span class="form-steps__item-line"></span>
+              <span class="form-steps__item-text">Vàng</span>
+            </div>
+          </div>
+          <div class="form-steps__item form-steps__item--completed">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">3</span>
+              <span class="form-steps__item-line"></span>
+              <span class="form-steps__item-text">Bạch kim</span>
+            </div>
+          </div>
+          <div class="form-steps__item form-steps__item--active">
+            <div class="form-steps__item-content">
+              <span class="form-steps__item-icon">4</span>
+              <span class="form-steps__item-line"></span>
+              <span class="form-steps__item-text">Kim cương</span>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

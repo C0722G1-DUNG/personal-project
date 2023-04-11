@@ -5,7 +5,7 @@ import {TokenService} from "../../log-in/service/token.service";
 import {Title} from "@angular/platform-browser";
 import {ITotalCart} from "../../entity/itotal-cart";
 import {ShareService} from "../../log-in/service/share.service";
-
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -82,6 +82,14 @@ export class CartComponent implements OnInit {
         this.ngOnInit();
       }
       , error => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'THêm vào giỏ hàng thất bại!',
+          text: 'Sản phẩm hiện tại đã đạt giới hạn',
+          showConfirmButton: false,
+          timer: 2000
+        })
       },
       () => {
       });

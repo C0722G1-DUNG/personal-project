@@ -10,11 +10,21 @@ import {CartService} from "../../service/cart.service";
 export class OderDetailComponent implements OnInit {
   @Input()
   purchaseHistoryDetail: IPurchaseHistoryDto[] = [];
+  pageDetail: number =0;
+  totalPageDetail: any;
 
   constructor(private cartService: CartService) {
   }
 
   ngOnInit(): void {
+    window.scroll(0, 0);
   }
 
+  previousPage() {
+
+  }
+
+  nextPage() {
+
+  }
 }

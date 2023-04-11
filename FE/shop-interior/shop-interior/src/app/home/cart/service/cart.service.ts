@@ -6,6 +6,8 @@ import {CartDto} from "../../../entity/cart-dto";
 import {ITotalCart} from "../../../entity/itotal-cart";
 import {Oder} from "../../../entity/oder";
 import {IPurchaseHistoryDto} from "../../../entity/ipurchase-history-dto";
+import {IOderDto} from "../../../entity/ioder-dto";
+import {ITotalOrderValue} from "../../../entity/itotal-order-value";
 
 @Injectable({
   providedIn: 'root'
@@ -53,5 +55,18 @@ export class CartService {
 
   getDetailPurchaseHistory(idOder: number| undefined):Observable<IPurchaseHistoryDto[]> {
     return this.httpClient.get<IPurchaseHistoryDto[]>(this.API_URL_HISTORY+"/"+idOder);
+  }
+
+  getAllSellingProducts(page: number) {
+    return this.httpClient.get(this.API_URL_HISTORY+"?page="+page);
+  }
+
+  getListOderDetailUser(idUser: string | null | undefined, page: number): Observable<IOderDto[]> {
+    return this.httpClient.get<IOderDto[]>(this.API_URL_ODER+"/"+idUser+"?page="+page);
+  }
+
+  getTotalOderlUser(idUser: string | null | undefined):Observable<ITotalOrderValue> {
+    return this.httpClient.get<ITotalOrderValue>(this.API_URL_ODER+"/totalUser/"+idUser);
+
   }
 }

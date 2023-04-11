@@ -17,7 +17,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {OderCreateComponent} from "./home/cart/oder/oder-create/oder-create.component";
 import {OderListComponent} from "./home/cart/oder/oder-list/oder-list.component";
 import {HomeModule} from "./home/home.module";
-
+import {ProfileListComponent} from "./profile/profile/profile-list/profile-list.component";
+import {ProfileModule} from "./profile/profile.module";
+import {ProfileDetailComponent} from "./profile/profile/profile-detail/profile-detail.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,19 +29,22 @@ import {HomeModule} from "./home/home.module";
     CartComponent,
     DetailComponent,
     OderCreateComponent,
-    OderListComponent
-    // LogInComponent
+    OderListComponent,
+    ProfileListComponent,
+    ProfileDetailComponent,
+
   ],
-  imports: [
-    LogInModule,
-    BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    ProductModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HomeModule
-  ],
+    imports: [
+        LogInModule,
+        BrowserModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        ProductModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HomeModule,
+        ProfileModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

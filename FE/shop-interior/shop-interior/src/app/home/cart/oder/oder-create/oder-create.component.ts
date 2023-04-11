@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Cart} from "../../../../entity/cart";
 import {ITotalCart} from "../../../../entity/itotal-cart";
 import {CartService} from "../../service/cart.service";
@@ -10,6 +10,8 @@ import {LogInService} from "../../../../log-in/service/log-in.service";
 import {User} from "../../../../entity/user";
 import {Oder} from "../../../../entity/oder";
 import {render} from 'creditcardpayments/creditCardPayments';
+import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 @Component({
   selector: 'app-oder-create',
   templateUrl: './oder-create.component.html',
@@ -31,13 +33,10 @@ export class OderCreateComponent implements OnInit {
   money: number;
   constructor(private cartService: CartService, private tokenService: TokenService,
               private title: Title, private shareService: ShareService,
-              private logInService:LogInService) {
+              private logInService:LogInService,
+              private router:Router) {
     this.title.setTitle('thanh toán');
-    this.shareService.getClickEvent().subscribe(data => {
-      // this.list();
-      // this.getCostTotal();
-      // this.getUserById();
-    })
+
   }
   ngOnInit(): void {
 
@@ -57,6 +56,15 @@ export class OderCreateComponent implements OnInit {
           value: String(this.money),
           onApprove: (details) => {
            this.createOder();
+           this.router.navigateByUrl("/home");
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'THanh toán thành công',
+              showConfirmButton: false,
+              timer: 2000
+            })
+
           }
         }
       );

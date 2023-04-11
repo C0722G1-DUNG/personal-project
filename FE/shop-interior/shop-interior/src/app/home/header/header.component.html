@@ -10,10 +10,11 @@
         <li style="margin-right: 100px">
         </li>
         <li class="animationTop delay-03"><a routerLink="/home">Trang chủ</a></li>
-        <li class="animationTop delay-05"><a routerLink="/cart"><i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
+        <li *ngIf="role=='ROLE_CUSTOMER'" class="animationTop delay-04"><a routerLink="/cart"><i class="fa-sharp fa-solid fa-cart-shopping"></i></a>
           <span class="badge badge-pill badge-danger" >{{num}}</span>
         </li>
-        <li class="animationTop delay-06"><a routerLink="/oder/list">Lịch sử mua hàng</a></li>
+        <li *ngIf="role=='ROLE_ADMIN'" class="animationTop delay-05"><a routerLink="/oder/list">Lịch sử mua hàng</a></li>
+        <li *ngIf="role=='ROLE_ADMIN'" class="animationTop delay-06"><a routerLink="product/list">Quản lý sản phẩm</a></li>
         <li *ngIf="isLogged == false" class="animationTop delay-03"><a routerLink="/login">Đăng nhập</a></li>
         <li class="animationTop delay-1" *ngIf="isLogged == true">
           <div>
@@ -26,8 +27,8 @@
                 <li class="animationTop delay-01" style="color: white">
                   <i class="fa-solid fa-user me-3" ></i><strong style="color: green">{{user?.username}}</strong>
                 </li>
-                <li class="animationTop delay-02" ><a  class="dropdown" routerLink="/teacher/editInfoTeacher" > <i class="fa-solid fa-gear me-1"></i>
-                  Sửa thông tin cá nhân</a></li>
+                <li class="animationTop delay-02" ><a  class="dropdown" routerLink="/profile" > <i class="fa-solid fa-gear me-1"></i>
+                 thông tin cá nhân</a></li>
                 <li class="animationTop delay-03"><a class="dropdown" routerLink="/security/changePassword" ><i class="fa-sharp fa-solid fa-key me-1" ></i> Sửa mật khẩu</a></li><br>
 
                 <li class="animationTop delay-04"><a class="dropdown" data-bs-toggle="modal" data-bs-target="#logout" (click)="logout()"
